@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+  
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",  // JSX desteğini ekleyin
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["types/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build"]
+}
