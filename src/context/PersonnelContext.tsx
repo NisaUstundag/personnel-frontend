@@ -1,5 +1,7 @@
-import React, { createContext, useReducer } from 'react';
-import personnelReducer, { PersonnelAction } from '../store/reducer';
+import React, { createContext, ReactNode } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPersonnel, setPersonnel } from '../store/reducer';
+import { RootState } from '../store';
 
 interface Personnel {
   id: number;
@@ -20,19 +22,20 @@ export const PersonnelContext = createContext<PersonnelContextProps>({
   setPersonnel: () => {}
 });
 
-export const PersonnelProvider: React.FC = ({ children }) => {
-  const [personnel, dispatch] = useReducer(personnelReducer, []);
+export const PersonnelProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const personnel = useSelector((state: RootState) => state.personnel.personnel);
+  const dispatch = useDispatch();
 
-  const addPersonnel = (personnel: Personnel) => {
-    dispatch({ type: 'ADD_PERSONNEL', payload: personnel });
+  const addPersonnelHandler = (personnel: Personnel) => {
+    dispatch(addPersonnel(personnel));
   };
 
-  const setPersonnel = (personnel: Personnel[]) => {
-    dispatch({ type: 'SET_PERSONNEL', payload: personnel });
+  const setPersonnelHandler = (personnel: Personnel[]) => {
+    dispatch(setPersonnel(personnel));
   };
 
   return (
-    <PersonnelContext.Provider value={{ personnel, addPersonnel, setPersonnel }}>
+    <PersonnelContext.Provider value={{ personnel, addPersonnel: addPersonnelHandler, setPersonnel: setPersonnelHandler }}>
       {children}
     </PersonnelContext.Provider>
   );

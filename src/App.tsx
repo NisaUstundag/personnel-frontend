@@ -1,16 +1,30 @@
+// src/App.tsx
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import { Container, Typography, Box } from '@mui/material';
+import store from './store';
 import { PersonnelProvider } from './context/PersonnelContext';
 import PersonnelForm from './components/PersonnelForm';
 import PersonnelList from './components/PersonnelList';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersonnelProvider>
-        <PersonnelForm />
-        <PersonnelList />
+        <Container>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            my={4}
+          >
+            <Typography variant="h1" gutterBottom>
+              Personnel Management
+            </Typography>
+            <PersonnelForm />
+            <PersonnelList />
+          </Box>
+        </Container>
       </PersonnelProvider>
     </Provider>
   );

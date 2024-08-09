@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-  
     "target": "es5",
-    "module": "commonjs",
-    "strict": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",  // JSX desteğini ekleyin
-    "baseUrl": "./src",
-    "paths": {
-      "*": ["types/*"]
-    }
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build"]
+  "include": ["src"]
 }
